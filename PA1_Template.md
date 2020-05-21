@@ -2,8 +2,10 @@
 title: "PA1_Template"
 author: "Nimisha"
 date: "22/05/2020"
-output: html_document
-keep_md: true 
+output:
+  html_document:
+    keep_md: yes
+  pdf_document: default
 ---
 
 
@@ -13,16 +15,17 @@ keep_md: true
 ```r
 setwd("C:/Users/NIMISHA/Documents/Reproducible research")
 library(knitr)
-knit("pA1__Template.Rmd", output = NULL)
+knit("PA1_Template.Rmd", output = NULL)
 ```
 
 ```
-## Warning in file(con, "r"): cannot open file 'pA1__Template.Rmd':
-## No such file or directory
+## 
+## 
+## processing file: PA1_Template.Rmd
 ```
 
 ```
-## Error in file(con, "r"): cannot open the connection
+## Error in parse_block(g[-1], g[1], params.src): duplicate label 'setup'
 ```
 
 ```r
@@ -62,37 +65,7 @@ str(data1)
 
 ```r
 library(ggplot2)
-```
-
-```
-## Registered S3 method overwritten by 'dplyr':
-##   method           from
-##   print.rowwise_df
-```
-
-```r
 library(dplyr)
-```
-
-```
-## Warning: package 'dplyr' was built under R version 3.6.2
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
 ```
 
 
@@ -108,7 +81,7 @@ head(steps_each_day)
 hist(steps_each_day$steps,col="red",main = "Variation in the Number of steps",xlab ="Number of Steps Each Day" )
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png)
 #### 4. Mean and median number of steps taken each day
 
 ```r
@@ -124,7 +97,7 @@ max_steps<-avg_steps_each_interval[max_,'steps']
 ggplot(data = avg_steps_each_interval,aes(x=interval,y=steps))+geom_line(col="blue")+labs(title = "Average Number of Steps in Each Interval")
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png)
 ###### Finding index of all those entries which are filled as NA in the dataset
 
 ```r
@@ -149,7 +122,7 @@ median_steps<-median(num_steps$steps)
 ggplot(data=num_steps,aes(steps))+geom_histogram(col="red",bins = 8)+labs(title = "Number of Steps Taken Each Day")+xlab(label = c("Steps"))
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png)
+![plot of chunk unnamed-chunk-17](figure/unnamed-chunk-17-1.png)
 #### Making new column and filling the data that whether the day was a weekday or a weekend and plotting the acivity on weekend and weekday.
 
 ```r
@@ -164,4 +137,4 @@ g<-ggplot(data = data_for_plot,aes(x=interval,y=steps))+geom_line(col="blue")
 g+facet_grid(weekday~.)+labs(title = "Activity on different type of days")+xlab(label = "5 minute interval")
 ```
 
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.png)
